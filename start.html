@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    
+    <meta name="theme-color" content="#0C0817">
+    
+    <title>EasyPr - Кодити — це просто!</title>
+    <meta name="description" content="Вивчай мови програмування крок за кроком разом з EasyPr.">
+    <meta name="keywords" content="програмування, Python, JavaScript, HTML, CSS, навчання, EasyPr">
+    <meta name="author" content="EasyPr">
+    
+    <meta property="og:title" content="EasyPr - Кодити — це просто!">
+    <meta property="og:description" content="Вивчай мови програмування крок за кроком разом з EasyPr.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/Learning Language Banner.svg">
+    <meta property="og:site_name" content="LeEng">
+    <meta property="og:locale" content="uk_UA">
+    
+    <script>
+        (function() {
+            const warn = console.warn;
+            console.warn = function(...args) {
+                if (typeof args[0] === 'string' && args[0].includes('cdn.tailwindcss.com should not be used in production')) return;
+                warn.apply(console, args);
+            };
+        })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="learning.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.3.0/dist/jdenticon.min.js" async integrity="sha384-LfouGM03m83ArVtne1JPk926e3SGD0Tz8XHtW2OKGsgeBU/UfR0Fa8eX+UlwSSAZ" crossorigin="anonymous"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { brand: { blue: '#6D4AFF', dark: '#30245F', light: '#17162E', red: '#C62828' } },
+                    fontFamily: { sans: ['Tahoma', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <style>
+        @font-face { font-family: 'Montserrat'; src: url('fonts/Montserrat-VariableFont_wght.ttf') format('truetype'); font-weight: 100 900; font-style: normal; }
+        @font-face { font-family: 'Tahoma'; src: url('fonts/tahoma.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+        @font-face { font-family: 'Press Start 2P'; src: url('fonts/PressStart2P-Regular.ttf') format('truetype'); font-weight: 400; font-style: normal; }
+        body { font-family: 'Tahoma', sans-serif; background-color: #10112F; color: #fff; -webkit-tap-highlight-color: transparent; }
+        #app-content { width: 100%; min-width: 0; }
+        #view-auth > div { width: min(100%, 1600px); margin-inline: auto; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Press Start 2P', sans-serif; font-weight: 400; }
+        button, [role="button"], a[class*="bg-"] { font-family: 'Montserrat', sans-serif; }
+        footer { font-family: 'Montserrat', sans-serif; }
+        .retro-action { display: inline-flex; min-height: 40px; align-items: center; justify-content: center; padding-block: 8px; border-radius: 12px; background: #6D4AFF; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; line-height: 24px; box-sizing: border-box; }
+        .landing-tech-icon { width: clamp(88px, 26vw, 144px); height: clamp(88px, 26vw, 144px); max-width: 100%; object-fit: contain; transition: transform .25s ease, filter .25s ease; }
+        #learning-materials-section a:hover .landing-tech-icon,
+        #learning-materials-section a:focus-visible .landing-tech-icon { transform: scale(1.08); filter: drop-shadow(0 0 10px rgba(76,29,149,.9)) drop-shadow(0 0 24px rgba(49,18,107,.8)); }
+        @media (prefers-reduced-motion: reduce) {
+            .landing-tech-icon { transition: none; }
+        }
+        #learning-materials-section .learning-materials-heading { font-size: clamp(20px, 3.6vw, 32px); line-height: 1.4; }
+        #learning-materials-section .learning-materials-label { font-size: clamp(16px, 2.2vw, 22px); line-height: 1.4; }
+        .header-auth-actions a { padding-block: 5px; border-radius: 8px; }
+        #mobile-menu > div:last-child { gap: 12px; margin-top: 24px; padding-inline: 24px; }
+        #mobile-menu > div:last-child a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 260px;
+            min-height: 42px;
+            padding: 8px 18px;
+            border: 1px solid #6D4AFF;
+            border-radius: 8px;
+            background: #10112F;
+            font-size: 15px;
+            line-height: 24px;
+            transition: background-color 150ms ease, transform 150ms ease;
+        }
+        #mobile-menu > div:last-child a:last-child { background: #6D4AFF; border-color: #6D4AFF; }
+        #mobile-menu > div:last-child a:hover { transform: translateY(-1px); }
+        .play-market-button { display: block; width: 145px; height: auto; border-radius: 5%; }
+        .legal-content { color: #fff; background: #0C0817; border: 1px solid rgba(167,139,250,.28); border-radius: 24px; box-shadow: 0 24px 70px rgba(0,0,0,.32); }
+        .legal-content button, .legal-title { color: #fff; }
+        .legal-content button img { filter: brightness(0) invert(1); }
+        .legal-title { border-color: rgba(167,139,250,.32); }
+        .legal-copy { color: #DBEAFE; }
+        .legal-copy strong { color: #fff; font-size: 1.125rem; }
+        .legal-copy a { color: #C4B5FD; text-decoration: underline; }
+        .landing-hero-illustration { width: 80%; height: 80%; }
+        .install-app-illustration { transform: translateX(-3%); }
+        @media (max-width: 767px) {
+            #view-main #mobile-landing-hero, body.has-mobile-navigation #view-main #mobile-landing-hero { min-height: 0; }
+            #view-main #mobile-landing-art { aspect-ratio: 694 / 595; margin: 0; transform: none; }
+            #view-main #mobile-landing-copy h1 { font-size: clamp(18px, 5vw, 28px); }
+            #view-main #mobile-landing-copy .mobile-auth-actions a { min-height: 40px; height: 40px; padding: 8px 20px; }
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0C0817; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg,#7C3AED,#6D4AFF); border-radius: 8px; }
+        .no-scroll { overflow: hidden; }
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .floating-wrapper { animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0% { transform: translateY(0px) rotate(0.01deg); } 50% { transform: translateY(-10px) rotate(0.01deg); } 100% { transform: translateY(0px) rotate(0.01deg); } }
+        .premium-table { border-collapse: separate; border-spacing: 0; width: 100%; border-radius: 20px; overflow: hidden; border: 1px solid rgba(167,139,250,.45); }
+        .premium-table th, .premium-table td { border-bottom: 1px solid rgba(167,139,250,.28); border-right: 1px solid rgba(167,139,250,.28); padding: 16px; text-align: center; font-weight: 700; }
+        .premium-table th:last-child, .premium-table td:last-child { border-right: none; }
+        .premium-table tr:last-child td { border-bottom: none; }
+        .premium-table th.bg-free, .premium-table td.bg-free { background-color: #17162E; color: #D8D5EA; }
+        .premium-table th.bg-prem, .premium-table td.bg-prem { background-color: #30245F; color: #FFFFFF; }
+        .auth-input { width: 100%; background-color: #100E20; border: 1px solid rgba(167,139,250,.5); border-radius: 16px; padding: 14px 20px; font-size: 16px; font-weight: 600; color: #F5F3FF; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+        .auth-input::placeholder { color: #A8A3BC; opacity: 1; font-weight: 500; }
+        .auth-input:focus { border-color: #A78BFA; box-shadow: 0 0 0 4px rgba(124,58,237,.22); }
+        .auth-illustration-gradient { display: none; position: absolute; left: 50%; top: 50%; z-index: 0; width: min(84%, 695px); aspect-ratio: 695 / 931; max-height: calc(100% - 24px); transform: translate(-50%, -50%); border-radius: 30px; background: linear-gradient(90deg, #30245F 0%, #6D4AFF 100%); }
+        #auth-illustration-container.is-email-step .auth-illustration-gradient { display: block; }
+        #auth-illustration-container { overflow: visible; }
+        #auth-illustration-container.is-email-step { z-index: 20; }
+        #auth-illustration { width: 95%; max-width: 720px; height: auto; object-fit: contain; transform: scale(1.08); }
+        .mobile-auth-illustration-gradient { position: absolute; z-index: 0; inset: 0; width: 100%; height: 100%; background: linear-gradient(90deg, #6D4AFF 0%, #30245F 100%); pointer-events: none; }
+        .progress-bar-container { width: 100%; background-color: #29263D; height: 6px; border-radius: 999px; overflow: hidden; margin-bottom: 24px; }
+        .progress-bar-fill { height: 100%; background: linear-gradient(90deg,#7C3AED,#A78BFA); transition: width 0.4s ease-out; }
+        @media (max-width: 767px) {
+            body:not(.has-mobile-navigation) { padding-top: 0 !important; }
+            body.has-mobile-navigation { padding-top: 60px !important; }
+            body.has-mobile-navigation #view-main #mobile-landing-hero { margin-top: 0; }
+            #view-main #mobile-landing-hero { min-height: 0; display: flex; flex-direction: column; }
+            body.has-mobile-navigation #view-main #mobile-landing-hero { min-height: 0; }
+            #view-main #mobile-landing-art { position: relative; z-index: 1; flex: 0 0 auto; width: 100%; height: auto; aspect-ratio: 694 / 595; min-height: 0; margin: 0; transform: none; }
+            #view-main #mobile-landing-art img { object-fit: contain; object-position: center; animation: none; }
+            #view-main #mobile-landing-copy { position: relative; z-index: 0; flex: 0 0 auto; min-height: 0; padding-top: 18px; padding-bottom: 22px; }
+            #view-main #mobile-landing-copy .mobile-auth-actions { display: flex; flex-direction: column; gap: 14px; }
+            #view-main #mobile-landing-copy .mobile-auth-actions a { min-height: 40px; height: 40px; padding: 8px 20px; font-size: 17px; }
+            #view-main #learning-materials-section { margin-block: 16px; }
+            #view-main #install-app-section { margin-bottom: 16px; }
+            #avatar-options { grid-template-columns: repeat(3, 72px); grid-auto-rows: 72px; justify-content: center; }
+            #auth-mobile-illustration-area { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; width: 100%; height: clamp(170px, 26svh, 240px); min-height: 160px; max-height: 240px; overflow: hidden; margin-bottom: 0; padding: 8px 0 0; pointer-events: none; }
+            #auth-mobile-illustration-area .mobile-auth-illustration-gradient { border-radius: 0; }
+            #auth-illustration-mobile { position: relative; z-index: 2; display: block; width: 100%; max-width: 100%; height: 100%; max-height: 100%; object-fit: contain; object-position: center bottom; margin: 0 auto; padding: 0; pointer-events: none; transition: opacity 0.25s ease, transform 0.25s ease; }
+            #auth-illustration-mobile.floating-wrapper { animation: mobileFloat 5s ease-in-out infinite; }
+            @keyframes mobileFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+            #auth-mobile-illustration-area > button { pointer-events: auto; }
+            #auth-form-panel { position: relative; z-index: 10; margin-top: 0; background: transparent; padding: 20px; }
+            #auth-form-content { position: relative; z-index: 4; max-width: 360px; width: 100%; }
+            #auth-form-content h1 { font-size: clamp(26px, 7vw, 32px); line-height: 1.15; }
+            #avatar-preview-container { width: 92px; height: 92px; }
+            #avatar-preview-container svg { width: 76px; height: 76px; }
+        }
+        @media (max-width: 767px) and (max-height: 650px) {
+            #view-main #mobile-landing-copy { padding-block: 11px 14px; }
+            #view-main #mobile-landing-copy h1 { font-size: 29px; }
+            #view-main #mobile-landing-copy .mobile-auth-actions { gap: 14px; }
+            #view-main #mobile-landing-copy .mobile-auth-actions a { min-height: 54px; height: 54px; font-size: 19px; }
+        }
+        .landing-section-divider { display: none; align-items: center; justify-content: center; gap: 10px; width: min(76%, 420px); height: 16px; margin: 0 auto; }
+        .landing-section-divider::before, .landing-section-divider::after { content: ""; flex: 1; height: 2px; border-radius: 999px; background: linear-gradient(90deg, transparent, rgba(167,139,250,.36)); }
+        .landing-section-divider::after { transform: rotate(180deg); }
+        .landing-section-divider span { width: 9px; height: 9px; border: 2px solid #A78BFA; border-radius: 2px; transform: rotate(45deg); background: #0C0817; }
+        #avatar-picker-modal .avatar-picker-panel { border: 1px solid rgba(167,139,250,.42); background: linear-gradient(145deg, #1B1833, #10112F 72%); color: #fff; box-shadow: 0 24px 80px rgba(0,0,0,.5), 0 0 36px rgba(124,58,237,.16); }
+        #avatar-picker-modal #avatar-picker-title { color: #fff; }
+        #avatar-picker-modal .avatar-picker-description { color: #C4BFD9; }
+        #avatar-picker-modal .avatar-picker-close { border: 1px solid rgba(167,139,250,.24); background: #282440; color: #fff; transition: background-color .2s ease, border-color .2s ease; }
+        #avatar-picker-modal .avatar-picker-close:hover { border-color: #6D4AA8; background: #302544; }
+        #avatar-options .avatar-option { border: 4px solid transparent; background: #24213B; transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+        #avatar-options .avatar-option:hover { border-color: #6D4AA8; background: #302544; box-shadow: 0 0 14px rgba(76,29,149,.28); transform: translateY(-2px); }
+        #avatar-options .avatar-option:focus-visible { border-color: #8B5CF6; box-shadow: 0 0 18px rgba(139,92,246,.4); transform: translateY(-2px); }
+        #avatar-options .avatar-option.is-selected { border-color: #A78BFA; background: rgba(124,58,237,.2); box-shadow: 0 0 20px rgba(139,92,246,.38); }
+        #avatar-picker-modal .avatar-picker-page-button { border: 1px solid rgba(167,139,250,.4); background: rgba(76,29,149,.12); color: #E9DFFF; transition: background-color .2s ease, border-color .2s ease; }
+        #avatar-picker-modal .avatar-picker-page-button:hover { border-color: #6D4AA8; background: rgba(76,29,149,.28); }
+        #avatar-picker-modal .avatar-picker-save { background: linear-gradient(110deg, #7C3AED, #5B21B6); box-shadow: 0 8px 24px rgba(124,58,237,.3); transition: filter .2s ease, box-shadow .2s ease; }
+        #avatar-picker-modal .avatar-picker-save:hover { background: linear-gradient(110deg, #5B21B6, #3B1A68); box-shadow: 0 10px 24px rgba(76,29,149,.32); }
+        #avatar-picker-modal button:focus-visible { outline: 3px solid #C4B5FD; outline-offset: 3px; }
+        #avatar-options button { width: 72px; height: 72px; flex: 0 0 72px; aspect-ratio: 1; overflow: hidden; }
+        #avatar-options button svg { width: 100%; height: 100%; }
+        @media (min-width: 768px) {
+            #view-main #mobile-landing-hero { margin-top: 16px; }
+            #view-main #learning-materials-section { margin-block: 2rem; }
+            #view-main #install-app-section { margin-bottom: 2rem; }
+        }
+        @media (max-width: 767px) {
+            .landing-section-divider { display: flex; margin-block: 6px; }
+            #mobile-landing-art { background-color: #0C0817 !important; }
+            #view-main #learning-materials-section .learning-materials-heading {
+                font-size: clamp(18px, 5.75vw, 23px);
+                line-height: 1.5;
+                margin-bottom: 24px;
+            }
+            #view-main #mobile-landing-hero {
+                width: 100%;
+                min-height: calc(100svh - 92px) !important;
+                margin: 16px 0 !important;
+                background-color: #0C0817;
+            }
+            #view-main #mobile-landing-art {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: clamp(260px, 42svh, 356px);
+                aspect-ratio: auto;
+                box-sizing: border-box;
+            }
+            #view-main #mobile-landing-art img {
+                position: relative;
+                inset: auto;
+                display: block;
+                width: auto;
+                height: calc(100% - 24px);
+                max-width: 100%;
+                object-fit: contain;
+                object-position: center;
+            }
+            #view-main #mobile-landing-copy {
+                flex: 1 1 auto;
+                padding: 22px 22px 43px;
+                background-color: transparent;
+            }
+            #view-main #mobile-landing-copy h1 {
+                max-width: 100%;
+                margin-bottom: 14px;
+                font-size: clamp(20px, 6vw, 26px);
+                line-height: 1.35;
+            }
+            #view-main #mobile-landing-copy p {
+                max-width: 338px;
+                margin-bottom: 22px;
+                font-size: 19px;
+                line-height: 1.25;
+            }
+            #view-main #mobile-landing-copy .mobile-auth-actions {
+                width: 100%;
+                max-width: none;
+                align-items: center;
+                gap: 19px;
+            }
+            #view-main #mobile-landing-copy .mobile-auth-actions a {
+                width: 90%;
+                max-width: 324px;
+                min-height: 54px;
+                height: 54px;
+                padding: 11px 22px;
+                border-radius: 5px;
+                font-size: 19px;
+            }
+        }
+        @media (min-width: 500px) and (max-width: 767px) {
+            #view-main #mobile-landing-hero { margin-inline: 0 !important; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #view-main #mobile-landing-art img { animation: none; }
+        }
+
+        .auth-illustration-gradient, .mobile-auth-illustration-gradient { display: none !important; }
+        
+        #auth-illustration-container { overflow: visible !important; background-color: transparent; padding: 0 !important; display: flex; justify-content: center; align-items: center; position: relative; z-index: 10; margin: 0 auto; width: 100%; height: 100%; flex: 1; }
+        #auth-illustration-bg { display: none !important; }
+        #auth-illustration { width: 80% !important; height: 80% !important; max-width: 80% !important; max-height: 80% !important; object-fit: contain !important; object-position: center; position: relative; z-index: 2; transition: opacity 0.18s ease; }
+        @media (max-width: 767px) {
+            #auth-mobile-illustration-area { 
+                background-color: transparent !important; 
+                padding: 8px 0 0 !important; 
+                margin: 0 !important; 
+                width: 100% !important; 
+                height: clamp(170px, 26svh, 240px) !important; 
+                min-height: 160px !important; 
+                max-height: 240px !important; 
+                position: relative; 
+                z-index: 2; 
+                display: flex; 
+                align-items: flex-end; 
+                justify-content: center; 
+                overflow: hidden !important;
+            }
+            #auth-illustration-mobile { 
+                width: 100% !important; 
+                height: 100% !important; 
+                max-height: min(26svh, 230px) !important;
+                object-fit: contain !important; 
+                object-position: center bottom !important; 
+                display: block !important; 
+                margin: 0 !important; 
+                padding: 0 !important; 
+                pointer-events: none; 
+                transition: opacity 0.2s ease; 
+            }
+            #auth-form-panel { 
+                margin-top: 0 !important; 
+                position: relative; 
+                z-index: 10; 
+                border-radius: 0 !important; 
+                padding-top: 24px !important; 
+                background: transparent !important;
+                background-color: transparent !important;
+                border: none !important;
+                box-shadow: none !important; 
+            }
+        }
+        @media (min-width: 768px) {
+            #auth-form-panel { width: 50% !important; padding-right: 3rem !important; z-index: 10; }
+            .auth-desktop-pane { width: 50% !important; padding-left: 0 !important; justify-content: center !important; z-index: 20; display: flex !important; }
+        }
+        #view-auth { background: transparent; color: #fff; }
+        #view-auth #auth-form-panel { background: transparent !important; background-color: transparent !important; color: #fff; border: none !important; box-shadow: none !important; }
+        #view-auth #auth-form-content h1,
+        #view-auth #auth-confirm-view h2 { color: #fff !important; }
+        #view-auth h1, #view-auth h2, #view-terms h1, #view-policy h1 { font-family: 'Montserrat', 'Tahoma', sans-serif; }
+        #view-auth #auth-form-content p,
+        #view-auth #auth-confirm-view p { color: #C4BFD9; }
+        #view-auth #auth-form-content .text-brand-blue { color: #C4B5FD; }
+        #view-auth .auth-back-button img { filter: brightness(0) invert(1); }
+        #view-auth .auth-back-button:hover { background-color: #30245F; }
+        #view-auth .auth-input { color: #F5F3FF; background-color: #100E20; border-color: rgba(167,139,250,.5); }
+        #view-auth .auth-input::placeholder { color: #A8A3BC; }
+        #view-auth .auth-input:focus { border-color: #A78BFA; box-shadow: 0 0 0 4px rgba(124,58,237,.22); }
+        #view-auth .progress-bar-container { background-color: #29263D; }
+        #view-auth #auth-confirm-view { color: #fff; background-color: #17162E; border-color: rgba(167,139,250,.3); }
+        #view-auth #auth-confirm-view .text-slate-500 { color: #C4BFD9; }
+        #view-auth .auth-desktop-pane { background: transparent; }
+        .premium-table { min-width: 540px; }
+        .legal-content { overflow-wrap: anywhere; }
+        img { max-width: 100%; }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            #view-main #mobile-landing-hero { min-height: 540px; }
+            #view-main #learning-materials-section { padding-inline: 28px; }
+            #auth-form-panel { padding-inline: 28px !important; }
+            #auth-illustration { width: 88% !important; max-width: 88% !important; }
+        }
+        @media (max-width: 767px) {
+            #view-main, #view-premium, #view-terms, #view-policy, #view-auth { min-width: 0; }
+            #view-main #learning-materials-section { padding: 32px 16px; }
+            #view-main #learning-materials-section > div { gap: 20px 8px; }
+            #view-main #learning-materials-section > div > a { min-width: 0; }
+            #view-main #learning-materials-section .learning-materials-label { font-size: clamp(14px, 4vw, 20px); overflow-wrap: anywhere; }
+            #view-main #install-app-section { padding-inline: 16px; }
+            #view-main #install-app-section > div { box-shadow: 0 16px 40px rgba(0,0,0,.28); }
+            #view-main #install-app-section > div > div:first-child { padding: 28px 20px; }
+            #view-main #install-app-section > div > div:last-child { min-height: clamp(180px, 54vw, 260px); }
+            #view-main #install-app-section .install-app-illustration { width: 100%; height: 100%; object-fit: contain; transform: none; }
+            #view-premium { padding: 28px 12px; }
+            #view-premium > div { padding: 20px 14px; border-radius: 20px; }
+            #view-premium h1 { font-size: clamp(20px, 6vw, 30px); line-height: 1.4; }
+            #view-premium .overflow-x-auto { max-width: 100%; }
+            #view-terms, #view-policy { padding: 28px 12px; }
+            #view-terms .legal-content, #view-policy .legal-content { padding: 22px 18px; border-width: 1px; box-shadow: 0 18px 48px rgba(0,0,0,.3); }
+            #view-terms .legal-title, #view-policy .legal-title { font-size: clamp(20px, 6vw, 30px); line-height: 1.4; }
+            #view-auth { min-height: calc(100dvh - 60px); }
+            #auth-mobile-illustration-area { height: clamp(170px, 26svh, 240px) !important; min-height: 160px !important; max-height: 240px !important; margin-bottom: 0 !important; padding: 8px 0 0 !important; }
+            #auth-illustration-mobile { max-width: min(100%, 520px) !important; }
+            #auth-form-panel { width: 100% !important; min-width: 0; margin-top: 0 !important; padding: 30px 18px calc(28px + env(safe-area-inset-bottom)) !important; }
+            #auth-form-content { width: 100%; max-width: 420px; }
+            #auth-form-content h1, #auth-confirm-view h2 { overflow-wrap: anywhere; }
+            #auth-form-content form, #auth-form-content input, #auth-form-content button { max-width: 100%; }
+            #avatar-options { grid-template-columns: repeat(auto-fit, minmax(56px, 72px)); }
+            #avatar-picker-modal { padding-inline: 10px; }
+            #avatar-picker-modal .avatar-picker-panel { max-width: 100%; padding: 18px; }
+            #avatar-picker-modal .avatar-picker-page-button { min-width: 0; padding-inline: 10px; }
+            footer { padding-inline: 18px; }
+            footer > div:first-child { gap: 28px; }
+        }
+        @media (max-width: 360px) {
+            #view-main #mobile-landing-copy { padding-inline: 12px; }
+            #view-main #mobile-landing-copy .mobile-auth-actions a { width: 100%; }
+            #view-main #install-app-section > div > div:first-child { padding-inline: 16px; }
+            #auth-form-panel { padding-inline: 14px !important; }
+            #auth-form-content h1, #auth-confirm-view h2 { font-size: 24px; }
+        }
+
+    </style>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, sendEmailVerification, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        const firebaseConfig = { apiKey: "AIzaSyCbhPzvA3Qj0REVYYLybZ5Ufva1uRtW8yE", authDomain: "leeng-e89f7.firebaseapp.com", projectId: "leeng-e89f7", storageBucket: "leeng-e89f7.firebasestorage.app", messagingSenderId: "571417738285", appId: "1:571417738285:web:2d890241071f75b2a68ca4", measurementId: "G-Q99GMZ21LK" };
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        window.LeEngAuth = auth;
+        window.LeEngDB = db;
+        window.firebaseAPI = { signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, sendEmailVerification, updateProfile, signOut, doc, setDoc };
+
+        let verificationPollTimer = null;
+        let verificationPollUid = null;
+
+        function stopVerificationPolling() {
+            if (verificationPollTimer) clearInterval(verificationPollTimer);
+            verificationPollTimer = null;
+            verificationPollUid = null;
+        }
+
+        function startVerificationPolling(user) {
+            if (verificationPollUid === user.uid) return;
+            stopVerificationPolling();
+            verificationPollUid = user.uid;
+            verificationPollTimer = setInterval(async () => {
+                const currentUser = auth.currentUser;
+                if (!currentUser || currentUser.uid !== verificationPollUid) {
+                    stopVerificationPolling();
+                    return;
+                }
+                try {
+                    await currentUser.reload();
+                    if (auth.currentUser?.emailVerified) {
+                        stopVerificationPolling();
+                        sessionStorage.removeItem('pendingEmailVerification');
+                        window.location.replace('app.html');
+                    }
+                } catch (error) {
+                    console.error('Не вдалося автоматично перевірити підтвердження пошти:', error);
+                }
+            }, 3000);
+        }
+        
+        onAuthStateChanged(auth, (user) => {
+            const loader = document.getElementById('auth-redirect-loader');
+            if (user?.emailVerified) {
+                stopVerificationPolling();
+                sessionStorage.removeItem('pendingEmailVerification');
+                try { window.location.replace('app.html'); } catch (e) { if(loader) loader.classList.add('opacity-0', 'pointer-events-none'); }
+            } else if (user) {
+                if (loader) { loader.classList.add('opacity-0', 'pointer-events-none'); setTimeout(() => loader.remove(), 400); }
+                window.showVerificationNotice?.(user.email || '');
+                startVerificationPolling(user);
+            } else {
+                stopVerificationPolling();
+                if(loader) { loader.classList.add('opacity-0', 'pointer-events-none'); setTimeout(() => loader.remove(), 400); }
+            }
+        });
+    </script>
+</head>
+<body class="text-white antialiased overflow-x-hidden pt-[60px] flex flex-col min-h-screen">
+
+    <div id="auth-redirect-loader" class="fixed inset-0 z-[999] bg-[#0C0817] flex flex-col items-center justify-center transition-opacity duration-300">
+        <div class="w-10 h-10 border-4 border-brand-blue border-t-transparent rounded-full animate-spin"></div>
+    </div>
+    <div id="toast" class="fixed top-20 left-1/2 transform -translate-x-1/2 z-[9999] px-6 py-3 rounded-2xl font-bold shadow-lg transition-all duration-300 opacity-0 pointer-events-none translate-y-[-20px] text-white"></div>
+    <div id="avatar-picker-modal" class="fixed inset-0 z-[600] hidden items-center justify-center bg-black/50 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="avatar-picker-title" onclick="if(event.target === this) closeAvatarPicker()">
+        <div class="avatar-picker-panel w-full max-w-lg rounded-3xl p-6 md:p-8">
+        <div class="flex items-start justify-between gap-4"><div><h2 id="avatar-picker-title" class="text-2xl font-black">Оберіть, будь ласка, аватар</h2><p class="avatar-picker-description text-sm font-medium mt-1">Гортайте, будь ласка, щоб згенерувати нові варіанти.</p></div><button type="button" onclick="closeAvatarPicker()" aria-label="Закрити" class="avatar-picker-close w-10 h-10 shrink-0 aspect-square flex items-center justify-center rounded-full font-bold">✕</button></div>
+            <div id="avatar-options" class="grid grid-cols-5 gap-3 my-6"></div>
+        <div class="flex justify-between items-center gap-3"><button type="button" onclick="cycleAvatars(-1)" class="avatar-picker-page-button px-4 py-3 rounded-xl font-bold">← Попередні</button><button type="button" onclick="cycleAvatars(1)" class="avatar-picker-page-button px-4 py-3 rounded-xl font-bold">Ще варіанти →</button></div>
+        <button type="button" onclick="saveSelectedAvatar()" class="avatar-picker-save mt-5 w-full rounded-xl py-3.5 font-black text-white">Обрати цей аватар</button>
+        </div>
+    </div>
+
+    <!-- Навігація -->
+    <header class="bg-[#0C0817] text-white py-2.5 px-4 md:px-8 w-full fixed top-0 z-50 border-b border-white/20">
+        <div class="max-w-7xl mx-auto flex justify-between items-center h-10 relative">
+            <div class="flex items-center gap-8 lg:gap-12">
+                <a href="#" onclick="switchView('main'); return false;" class="flex items-center z-50 hover:-translate-y-0.5 transition-transform">
+                    <img src="images/logo.svg" alt="LeEng Logo" class="h-8 object-contain" onerror="this.outerHTML='<span class=\'text-2xl font-black tracking-tight\'>LeEng</span>'">
+                </a>
+                <nav class="hidden md:flex items-center gap-8 font-semibold text-[17px]">
+                    <a href="#" onclick="switchView('main'); return false;" class="hover:text-violet-200 hover:-translate-y-0.5 transition-all">Головна</a>
+                    <a href="#learning-materials-section" onclick="switchView('main');" class="hover:text-violet-200 hover:-translate-y-0.5 transition-all">Курси</a>
+                    <a href="#" onclick="switchView('premium'); return false;" class="hover:text-violet-200 hover:-translate-y-0.5 transition-all text-white">Підписка</a>
+                </nav>
+            </div>
+            <div class="header-auth-actions hidden md:flex items-center gap-4 font-semibold text-sm">
+                <a href="#" onclick="openAuth('login'); return false;" class="px-6 py-2 border border-white bg-transparent hover:bg-white hover:text-[#0C0817] transition-colors">Увійти</a>
+                <a href="#" onclick="openAuth('register'); return false;" class="px-6 py-2 border border-white bg-transparent hover:bg-white hover:text-[#0C0817] transition-colors">Реєстрація</a>
+            </div>
+            <button id="mobile-menu-btn" type="button" class="md:hidden flex flex-col justify-center items-center gap-1.5 z-50 w-8 h-8 focus:outline-none">
+                <span class="w-6 h-0.5 bg-white transition-transform duration-300"></span>
+                <span class="w-6 h-0.5 bg-white transition-opacity duration-300"></span>
+                <span class="w-6 h-0.5 bg-white transition-transform duration-300"></span>
+            </button>
+        </div>
+        <div id="mobile-menu" class="fixed inset-0 bg-[#0C0817] z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8">
+            <nav class="flex flex-col items-center gap-6 font-bold text-2xl text-white">
+                <a href="#" onclick="switchView('main'); closeMobileMenu(); return false;" class="hover:text-brand-light transition-colors">Головна</a>
+                <a href="#learning-materials-section" onclick="switchView('main'); closeMobileMenu();" class="hover:text-brand-light transition-colors">Курси</a>
+                <a href="#" onclick="switchView('premium'); closeMobileMenu(); return false;" class="hover:text-brand-light transition-colors text-white">Підписка</a>
+            </nav>
+            <div class="flex flex-col items-center gap-4 w-full px-8 mt-8">
+                <a href="#" onclick="openAuth('login'); closeMobileMenu(); return false;" class="w-full text-center px-6 py-3 border border-white text-white font-bold text-lg active:bg-white active:text-brand-blue transition-colors">Увійти</a>
+                <a href="#" onclick="openAuth('register'); closeMobileMenu(); return false;" class="w-full text-center px-6 py-3 border border-white text-white font-bold text-lg active:bg-white active:text-brand-blue transition-colors">Реєстрація</a>
+            </div>
+        </div>
+    </header>
+
+    <div id="app-content" class="flex-1 flex flex-col">
+        <div id="view-main" class="app-view block flex-1 flex flex-col">
+            <section id="mobile-landing-hero" class="w-full bg-[#0C0817] relative overflow-hidden flex-none md:flex md:flex-col md:min-h-[650px]">
+                <div class="hidden md:flex max-w-[1440px] mx-auto flex-col md:flex-row items-center md:items-stretch relative flex-1 w-full">
+                    <div class="w-full md:w-[55%] min-h-[300px] sm:min-h-[400px] md:min-h-[500px] flex justify-center items-center relative z-20 pt-8 pb-4 md:py-0">
+                        <img src="images/Learning Language Banner.svg" alt="Learning Language" class="landing-hero-illustration hidden md:block object-contain object-center floating-wrapper">
+                    </div>
+                    <div class="w-full md:w-[45%] text-white flex flex-col justify-center items-center md:items-start text-center md:text-left px-6 py-8 md:py-16 md:pr-12 lg:pr-20 md:pl-8 z-10">
+                        <h1 class="text-2xl lg:text-[32px] font-black leading-[1.45] mb-5 tracking-tight max-w-[16ch]">Кодити — це просто!</h1>
+                        <p class="text-base md:text-lg font-medium mb-7 max-w-sm">Вивчай мови програмування крок за кроком</p>
+                        <a href="#" onclick="openAuth('register'); return false;" class="retro-action min-w-[220px] text-center px-12 hover:bg-[#30245F] transition-colors">Почати</a>
+                    </div>
+                </div>
+                <div id="mobile-landing-art" class="md:hidden relative w-full shrink-0 overflow-hidden bg-[#0C0817]">
+                    <img src="images/Learning Language Banner.svg" alt="Ілюстрація для навчання програмуванню" class="absolute inset-0 w-full h-full object-contain object-center">
+                </div>
+                <div id="mobile-landing-copy" class="md:hidden w-full bg-[#0C0817] flex flex-col justify-center items-center text-center px-5 py-5">
+                    <h1 class="leading-[1.7] font-black tracking-tight text-white mb-3">Кодити — це<br>просто!</h1>
+                    <p class="text-sm font-semibold text-white mb-4">Вивчай мови програмування крок за кроком</p>
+                    <div class="mobile-auth-actions flex w-full max-w-sm flex-col gap-3">
+                        <a href="#" onclick="openAuth('login'); return false;" class="retro-action px-5 text-base hover:bg-[#30245F] transition-colors">Увійти</a>
+                        <a href="#" onclick="openAuth('register'); return false;" class="retro-action px-5 text-base hover:bg-[#30245F] transition-colors">Створити акаунт</a>
+                    </div>
+                </div>
+            </section>
+            <div class="landing-section-divider" aria-hidden="true"><span></span></div>
+            
+            <section id="learning-materials-section" class="max-w-5xl mx-auto px-4 md:px-6 py-12 md:py-20 w-full shrink-0">
+                <h2 class="learning-materials-heading text-center text-lg sm:text-xl md:text-2xl text-white leading-[1.8] mb-10">Вивчайте з нами</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 text-center">
+                    <a href="#" onclick="openAuth('login'); return false;" class="flex flex-col items-center gap-3 transition-transform hover:-translate-y-1">
+                        <img class="landing-tech-icon" src="images/python.svg" alt="" aria-hidden="true"><span class="learning-materials-label font-bold text-white">Python</span>
+                    </a>
+                    <a href="#" onclick="openAuth('login'); return false;" class="flex flex-col items-center gap-3 transition-transform hover:-translate-y-1">
+                        <img class="landing-tech-icon" src="images/js.svg" alt="" aria-hidden="true"><span class="learning-materials-label font-bold text-white">JavaScript</span>
+                    </a>
+                    <a href="#" onclick="openAuth('login'); return false;" class="flex flex-col items-center gap-3 transition-transform hover:-translate-y-1">
+                        <img class="landing-tech-icon" src="images/html.svg" alt="" aria-hidden="true"><span class="learning-materials-label font-bold text-white">HTML</span>
+                    </a>
+                    <a href="#" onclick="openAuth('login'); return false;" class="flex flex-col items-center gap-3 transition-transform hover:-translate-y-1">
+                        <img class="landing-tech-icon" src="images/css.svg" alt="" aria-hidden="true"><span class="learning-materials-label font-bold text-white">CSS</span>
+                    </a>
+                </div>
+            </section>
+            <div class="landing-section-divider" aria-hidden="true"><span></span></div>
+
+            <section id="install-app-section" class="max-w-7xl mx-auto px-4 md:px-6 mb-12 md:mb-20 w-full">
+                <div class="bg-[#0C0817] border border-violet-300/20 rounded-3xl flex flex-col-reverse md:flex-row items-stretch overflow-hidden shadow-2xl">
+                    <div class="w-full md:w-[45%] p-8 md:p-12 lg:p-16 flex flex-col justify-center items-center md:items-start text-white text-center md:text-left relative z-10">
+                        <h2 class="text-lg sm:text-xl lg:text-2xl font-black leading-[1.45] mb-4 max-w-[16ch]">Завантажуй застосунок</h2>
+                        <p class="text-sm md:text-base font-semibold mb-7 max-w-sm">Виконуй, будь ласка, завдання та закріплюй знання на практиці!</p>
+                        <a href="https://play.google.com/" target="_blank" rel="noopener noreferrer" class="retro-action min-w-[220px] text-center px-10 hover:bg-[#30245F] transition-colors">
+                            Завантажити
+                        </a>
+                    </div>
+                    <div class="w-full md:w-[55%] relative min-h-[250px] sm:min-h-[400px] md:min-h-[550px]">
+                        <div class="absolute inset-0 w-full h-full">
+                            <img src="images/Install Mobile App Banner.svg" alt="Ілюстрація застосунку в ретро-вікнах"
+                                 class="install-app-illustration w-full h-full object-contain object-center">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="view-premium" class="app-view hidden fade-in py-12 md:py-20 px-4 md:px-8 min-h-[70vh]">
+            <div class="max-w-3xl mx-auto rounded-3xl border border-violet-400/30 bg-[#0C0817] p-5 shadow-[0_24px_70px_rgba(80,50,200,.22)] sm:p-8">
+                <div class="flex items-center gap-4 mb-6 relative">
+                    <button type="button" onclick="returnToPreviousView()" aria-label="До попередньої сторінки" class="flex h-11 w-11 shrink-0 aspect-square items-center justify-center rounded-full border border-violet-300/20 bg-[#17162E] text-violet-100 hover:bg-[#30245F] hover:text-white transition-all duration-300 hover:-translate-x-1 group absolute left-0 md:-left-16">
+                        <img src="images/Vector-Arrow-Go-Back.svg" alt="" class="h-8 w-8 object-contain transition-transform duration-300 group-hover:scale-110">
+                    </button>
+                    <h1 class="text-3xl text-white w-full text-center sm:text-4xl md:text-5xl">Premium</h1>
+                </div>
+                <div class="text-center mb-10">
+                <p class="text-lg font-bold leading-relaxed text-slate-200 md:text-xl">Більше навчальних матеріалів із Premium — за <span class="text-violet-300">500 внутрішніх монет на 30 днів</span></p>
+                </div>
+                <div class="overflow-x-auto shadow-xl rounded-2xl mb-10 mx-auto max-w-2xl transform hover:scale-[1.02] transition-transform duration-300">
+                    <table class="premium-table">
+                        <thead>
+                            <tr><th class="bg-[#17162E] text-white">Функції</th><th class="bg-free">Безкоштовно</th><th class="bg-prem">Premium</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="bg-[#17162E] font-bold text-white">Курси програмування</td><td class="bg-free">Базовий доступ</td><td class="bg-prem font-black">Повний</td></tr>
+                            <tr><td class="bg-[#17162E] font-bold text-white">Практичні проєкти</td><td class="bg-free">Доступні</td><td class="bg-prem font-black">Додаткові можливості</td></tr>
+                            <tr><td class="bg-[#17162E] font-bold text-white">Збереження стріку</td><td class="bg-free">За монети</td><td class="bg-prem font-black">Без ліміту</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mx-auto max-w-2xl text-center">
+                    <p class="mb-6 text-sm font-semibold leading-relaxed text-slate-400 md:text-base">Premium не поновлюється автоматично. Після завершення 30 днів доступ можна активувати знову за внутрішні монети.</p>
+                    <button type="button" onclick="openAuth('register'); return false;" class="bg-brand-blue hover:bg-[#30245F] hover:-translate-y-1 text-white font-bold py-4 px-12 rounded-xl text-lg w-full md:w-auto shadow-[0_8px_20px_-6px_rgba(50,52,215,0.5)] transition-all duration-300 active:scale-95">Створити акаунт і почати</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-terms" class="app-view hidden fade-in py-12 md:py-20 px-4 md:px-8 min-h-[70vh]">
+            <div class="legal-content max-w-4xl mx-auto p-8 md:p-12">
+                <button type="button" onclick="returnFromLegalPage()" class="mb-6 flex items-center gap-2 font-bold hover:-translate-x-1 transition-all">
+                    <img src="images/Vector-Arrow-Go-Back.svg" alt="" class="w-6 h-6"> До попередньої сторінки
+                </button>
+                <h1 class="legal-title text-3xl md:text-5xl font-black mb-8 border-b pb-6">Умови використання</h1>
+                <div class="legal-copy space-y-6 font-medium leading-relaxed">
+                    <p><strong>1. Навчальний сервіс</strong><br>LeEng надає курси програмування з HTML, CSS, JavaScript і Python. Матеріали мають освітній характер і не гарантують конкретного рівня підготовки.</p>
+                    <p><strong>2. Акаунт і прогрес</strong><br>Для збереження прогресу потрібен акаунт. Дані профілю, завершені уроки програмування, монети та стрік зберігаються для роботи сервісу та синхронізації. Особисті проєкти з коду зберігаються лише в локальному сховищі браузера. Ви відповідаєте за безпеку свого пароля й доступу до пошти.</p>
+                    <p><strong>3. Ігрові функції</strong><br>Монети та стрік є лише внутрішніми показниками прогресу, не мають грошової вартості й не є платіжним засобом.</p>
+                    <p><strong>4. Premium і внутрішні монети</strong><br>Premium відкривається на 30 днів за 500 внутрішніх монет, зароблених у навчанні. Це не грошовий платіж; автоматичного поновлення немає. Після завершення терміну доступ можна активувати знову. Монети не мають грошової вартості й не обмінюються на гроші.</p>
+                    <p><strong>5. Використання сервісу та звернення</strong><br>Не намагайтеся порушувати роботу застосунку або отримувати несанкціонований доступ. Для повідомлень про помилки чи запитів щодо акаунта напишіть на <a href="mailto:deeprootg@gmail.com">deeprootg@gmail.com</a>. Ви можете попросити видалити акаунт і пов’язані дані.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-policy" class="app-view hidden fade-in py-12 md:py-20 px-4 md:px-8 min-h-[70vh]">
+            <div class="legal-content max-w-4xl mx-auto p-8 md:p-12">
+                <button type="button" onclick="returnFromLegalPage()" class="mb-6 flex items-center gap-2 font-bold hover:-translate-x-1 transition-all">
+                    <img src="images/Vector-Arrow-Go-Back.svg" alt="" class="w-6 h-6"> До попередньої сторінки
+                </button>
+                <h1 class="legal-title text-3xl md:text-5xl font-black mb-8 border-b pb-6">Політика конфіденційності</h1>
+                <div class="legal-copy space-y-6 font-medium leading-relaxed">
+                    <p><strong>1. Дані, які обробляються</strong><br>Для створення акаунта використовуються ім’я, електронна пошта та ідентифікатор акаунта. Для роботи профілю також зберігаються аватар, монети, стрік і прогрес курсів програмування. Проєкти редактора зберігаються лише у сховищі поточного браузера.</p>
+                    <p><strong>2. Мета й інфраструктура</strong><br>Дані потрібні для входу, персоналізації профілю й синхронізації прогресу. Прогрес програмних курсів синхронізується через Firebase/Google Cloud, а офлайн-зміни очікують підключення. Код особистих проєктів не надсилається до Firebase; він залишається в локальному сховищі цього браузера.</p>
+                    <p><strong>3. Передавання та захист</strong><br>Ми не продаємо персональні дані. Інфраструктурний постачальник обробляє дані для роботи сервісу відповідно до власних умов. Застосовуються доступні засоби захисту Firebase, але абсолютну безпеку даних неможливо гарантувати.</p>
+                    <p><strong>4. Ваші права та видалення</strong><br>Ви можете змінити ім’я й аватар у профілі або надіслати запит на доступ, виправлення чи видалення даних на <a href="mailto:deeprootg@gmail.com">deeprootg@gmail.com</a>. Баланс внутрішніх монет і розблокування Premium зберігаються у профілі. Зовнішні посилання ведуть до ресурсів із власними політиками конфіденційності.</p>
+                    <p><strong>5. Оновлення</strong><br>Якщо спосіб обробки даних зміниться, політику буде оновлено. Питання про приватність надсилайте на <a href="mailto:deeprootg@gmail.com">deeprootg@gmail.com</a>.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-auth" class="app-view hidden fade-in min-h-[calc(100vh-60px)] bg-transparent relative">
+            <div class="flex flex-col md:flex-row w-full h-full min-h-[calc(100vh-60px)]">
+                <div id="auth-mobile-illustration-area" class="md:hidden w-full flex flex-col relative shrink-0">
+                    <img id="auth-illustration-mobile" src="images/Mobile/WhatIsYourNameMobile.svg" alt="Ілюстрація авторизації">
+                    <button type="button" onclick="handleAuthBack()" aria-label="До попередньої сторінки" class="auth-back-button absolute top-3.5 left-4 z-20 flex h-10 w-10 shrink-0 aspect-square items-center justify-center rounded-full bg-[#17162E] hover:bg-[#30245F] border border-violet-300/20 shadow-sm transition-all active:scale-90">
+                        <img src="images/Vector-Arrow-Go-Back.svg" alt="" class="w-6 h-6">
+                    </button>
+                </div>
+                
+                <div id="auth-form-panel" class="w-full md:w-[45%] lg:w-[40%] flex flex-col justify-center items-center p-6 md:p-12 lg:p-16 lg:pt-32 relative bg-transparent z-10 pt-8 md:mt-0 shrink-0">
+                    <div id="auth-form-content" class="w-full max-w-md relative text-center mx-auto">
+                        <button type="button" onclick="handleAuthBack()" aria-label="До попередньої сторінки" class="auth-back-button hidden md:flex absolute -top-16 left-0 h-11 w-11 shrink-0 aspect-square items-center justify-center rounded-full border border-violet-300/20 bg-[#17162E] transition-all duration-150 hover:bg-[#30245F] hover:-translate-x-1">
+                            <img src="images/Vector-Arrow-Go-Back.svg" alt="" class="h-8 w-8">
+                        </button>
+                        <div id="auth-confirm-view" class="hidden rounded-3xl border border-violet-300/20 bg-[#17162E] p-7 text-center shadow-sm">
+                            <span class="text-5xl" aria-hidden="true">📩</span>
+                            <h2 class="mt-4 text-2xl font-black text-white">Підтвердіть, будь ласка, пошту</h2>
+                            <p class="mt-3 text-sm font-semibold text-gray-600">Ми надіслали лист на <strong id="verification-email" class="break-all text-brand-blue"></strong>. Перейдіть, будь ласка, за посиланням у листі — ми автоматично відкриємо навчання.</p>
+                            <button type="button" onclick="checkEmailVerification()" class="mt-6 w-full rounded-full bg-brand-blue py-3.5 font-bold text-white">Перевірити підтвердження зараз</button>
+                            <button type="button" onclick="resendVerificationEmail()" class="mt-3 w-full rounded-full border-2 border-brand-blue py-3 font-bold text-brand-blue">Надіслати лист ще раз</button>
+                            <button type="button" onclick="returnToAuthLogin()" class="mt-4 text-sm font-bold text-slate-500 hover:underline">Повернутись до входу</button>
+                        </div>
+                        
+                        <div id="auth-view-register" class="auth-form-view block transition-opacity duration-300">
+                            <div class="progress-bar-container"><div id="reg-progress" class="progress-bar-fill w-1/3"></div></div>
+                            <form id="reg-step-1" class="block" onsubmit="event.preventDefault();">
+                                <div class="flex items-center justify-center gap-3 mb-4"><h1 class="text-3xl md:text-4xl font-black text-white tracking-tight">Як вас звати?</h1></div>
+                                <p class="text-sm font-semibold text-gray-500 mb-6 max-w-sm mx-auto">Введіть, будь ласка, ім'я та оберіть унікальний аватар.</p>
+                                <div class="flex flex-col items-center mb-6">
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div id="avatar-preview-container" class="w-28 h-28 rounded-full border-4 border-white overflow-hidden bg-brand-light shadow-inner flex items-center justify-center p-2"></div>
+                                        <button type="button" onclick="openAvatarPicker()" class="text-sm font-bold text-brand-blue hover:underline">Обрати серед згенерованих аватарів</button>
+                                    </div>
+                                </div>
+                                <div class="space-y-4">
+                                    <label for="reg-name" class="sr-only">Ім'я</label>
+                                    <input type="text" id="reg-name" required placeholder="Ім'я" class="auth-input text-center">
+                                    <button type="button" onclick="nextRegStep(2)" class="w-full bg-brand-blue hover:bg-[#30245F] text-white font-bold py-3.5 rounded-2xl text-[17px] mt-2 transition-all active:scale-95 shadow-md">Продовжити</button>
+                                </div>
+                                <div class="mt-6 text-center">
+                                    <button type="button" onclick="switchAuthMode('login')" class="text-brand-blue font-bold text-sm hover:underline">Вже маєте акаунт? Увійти</button>
+                                </div>
+                            </form>
+                            <form id="reg-step-2" class="hidden" onsubmit="event.preventDefault();">
+                                <div class="flex items-center justify-center gap-3 mb-4">
+                                    <h1 class="text-3xl md:text-4xl font-black text-white tracking-tight">Ваша пошта</h1>
+                                </div>
+                                <p class="text-sm font-semibold text-gray-500 mb-8 max-w-sm mx-auto">Вкажіть, будь ласка, пошту для збереження прогресу та відновлення доступу.</p>
+                                <div class="space-y-4">
+                                    <label for="reg-email" class="sr-only">Електронна пошта</label>
+                                    <input type="email" id="reg-email" required placeholder="Пошта" class="auth-input">
+                                    <button type="button" onclick="nextRegStep(3)" class="w-full bg-brand-blue hover:bg-[#30245F] text-white font-bold py-3.5 rounded-2xl text-[17px] mt-6 transition-all active:scale-95 shadow-md">Продовжити</button>
+                                </div>
+                            </form>
+                            <div id="reg-step-3" class="hidden">
+                                <div class="flex items-center justify-center gap-3 mb-4">
+                                    <h1 class="text-3xl md:text-4xl font-black text-white tracking-tight">Пароль</h1>
+                                </div>
+                                <p class="text-sm font-semibold text-gray-500 mb-6 max-w-sm mx-auto">Придумайте, будь ласка, пароль від 6 символів.</p>
+                                <form onsubmit="handleRegister(event)" class="space-y-4">
+                                    <label for="reg-password" class="sr-only">Пароль</label>
+                                    <input type="password" id="reg-password" required placeholder="Пароль" class="auth-input">
+                                    <label for="reg-password-confirm" class="sr-only">Повторіть пароль</label>
+                                    <input type="password" id="reg-password-confirm" required placeholder="Повторіть пароль" class="auth-input">
+                                    <div class="flex items-start gap-2.5 mt-4 text-left">
+                                        <input type="checkbox" id="reg-terms-check" class="mt-0.5 w-4 h-4 shrink-0 accent-brand-blue" required>
+                                        <label for="reg-terms-check" class="text-[12px] font-semibold text-gray-500 leading-snug cursor-pointer">Погоджуюся з Умовами використання та Політикою конфіденційності.</label>
+                                    </div>
+                                    <p class="text-[12px] font-semibold text-gray-500 leading-tight">
+                                        <a href="#" onclick="openLegalPage('terms'); return false;" class="text-brand-blue hover:underline">Переглянути умови</a>
+                                        <span aria-hidden="true"> · </span>
+                                        <a href="#" onclick="openLegalPage('policy'); return false;" class="text-brand-blue hover:underline">Політика конфіденційності</a>
+                                    </p>
+                                    <button id="btn-submit-reg" type="submit" class="w-full bg-brand-blue hover:bg-[#30245F] text-white font-bold py-3.5 rounded-2xl text-[17px] mt-6 transition-all active:scale-95 shadow-[0_8px_20px_-6px_rgba(109,74,255,0.35)]">Створити акаунт</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div id="auth-view-login" class="auth-form-view hidden transition-opacity duration-300">
+                            <h1 class="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">Введіть, будь ласка, дані</h1>
+                            <p class="text-sm font-semibold text-gray-500 mb-8 max-w-sm mx-auto">З поверненням! Продовжте, будь ласка, навчання з того місця, де зупинились.</p>
+                            <form onsubmit="handleLogin(event)" class="space-y-4">
+                                <label for="login-email" class="sr-only">Пошта</label>
+                                <input type="email" id="login-email" required placeholder="Пошта" class="auth-input">
+                                <label for="login-password" class="sr-only">Пароль</label>
+                                <input type="password" id="login-password" required placeholder="Пароль" class="auth-input">
+                                <div class="text-center mt-3">
+                                    <button type="button" onclick="switchAuthMode('forgot')" class="text-brand-blue font-bold text-sm hover:underline">Забули пароль?</button>
+                                </div>
+                                <button type="submit" class="w-full bg-brand-blue hover:bg-[#30245F] text-white font-bold py-3.5 rounded-2xl text-[17px] mt-6 transition-all active:scale-95 shadow-md">Увійти</button>
+                            </form>
+                            <div class="mt-6 text-center">
+                                <button type="button" onclick="switchAuthMode('register')" class="text-brand-blue font-bold text-sm hover:underline">Немає акаунту? Реєстрація</button>
+                            </div>
+                        </div>
+
+                        <div id="auth-view-forgot" class="auth-form-view hidden transition-opacity duration-300">
+                            <div class="flex items-center justify-center gap-3 mb-4">
+                                <h1 class="text-3xl md:text-4xl font-black text-white tracking-tight">Скидання паролю</h1>
+                            </div>
+                            <p class="text-sm font-semibold text-gray-500 mb-8 max-w-sm mx-auto">Будь ласка, введіть вашу пошту — ми надішлемо інструкції для відновлення доступу.</p>
+                            <form onsubmit="handleResetPassword(event)" class="space-y-4">
+                                <label for="reset-email" class="sr-only">Пошта</label>
+                                <input type="email" id="reset-email" required placeholder="Пошта" class="auth-input">
+                                <button type="submit" class="w-full bg-brand-blue hover:bg-[#30245F] text-white font-bold py-3.5 rounded-2xl text-[17px] mt-6 transition-all active:scale-95 shadow-md">Надіслати лист</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="auth-desktop-pane hidden md:flex md:w-[55%] lg:w-[60%] flex-col justify-center items-center relative min-h-[calc(100vh-60px)] shrink-0 overflow-hidden p-6 lg:p-12">
+                    
+                    <div class="relative w-full h-full flex-1 min-h-[60vh] flex items-center justify-center transition-all duration-150 z-10" id="auth-illustration-container">
+                        <img id="auth-illustration" src="images/Registration.svg" class="relative z-10 w-full h-full object-contain object-center floating-wrapper" alt="Авторизація">
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер -->
+    <footer class="bg-[#0C0817] text-white py-12 md:py-16 px-6 relative z-10 shrink-0">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+            <div class="flex flex-col items-center md:items-start gap-5">
+                <a href="#" onclick="switchView('main'); return false;" class="hover:-translate-y-1 transition-transform">
+                    <img src="images/logo.svg" alt="LeEng" class="h-10 object-contain" onerror="this.outerHTML='<span class=\'text-3xl font-black tracking-tight\'>LeEng</span>'">
+                </a>
+                <a href="https://play.google.com/" target="_blank" rel="noopener noreferrer" aria-label="Завантажити в Google Play" class="transition-transform hover:-translate-y-0.5">
+                    <img src="images/PlayMarket Button Link.svg" alt="Завантажити в Google Play" class="play-market-button">
+                </a>
+            </div>
+            <div class="flex flex-col items-center md:items-start gap-4 font-medium text-base">
+                <h2 class="text-sm font-bold text-white">Курси</h2>
+                <a href="#" onclick="openAuth('login'); return false;" class="hover:text-violet-200 transition-colors">Python</a>
+                <a href="#" onclick="openAuth('login'); return false;" class="hover:text-violet-200 transition-colors">JavaScript</a>
+                <a href="#" onclick="openAuth('login'); return false;" class="hover:text-violet-200 transition-colors">CSS</a>
+                <a href="#" onclick="openAuth('login'); return false;" class="hover:text-violet-200 transition-colors">HTML</a>
+            </div>
+            <div class="flex flex-col items-center md:items-end gap-4 font-medium text-base text-center md:text-right">
+                <a href="mailto:deeprootg@gmail.com" class="hover:text-violet-200 transition-colors">deeprootg@gmail.com</a>
+                <a href="#" onclick="openLegalPage('terms'); return false;" class="hover:text-violet-200 transition-colors">Умови використання</a>
+                <a href="#" onclick="openLegalPage('policy'); return false;" class="hover:text-violet-200 transition-colors">Політика конфіденційності</a>
+                <a href="#" onclick="switchView('premium'); return false;" class="hover:text-violet-200 transition-colors">Підписка</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-10 border-t border-white/20 pt-5 text-center text-xs text-white/70">© EasyPr 2026</div>
+    </footer>
+
+    <script>
+        let currentAvatarSeed = "LeEng_1001";
+
+        function renderAvatar(seed, containerId) {
+            const container = document.getElementById(containerId);
+            if(container) {
+                if (window.jdenticon) container.innerHTML = window.jdenticon.toSvg(seed, 100);
+                else setTimeout(() => renderAvatar(seed, containerId), 50);
+            }
+        }
+        function generateUniqueAvatarSeed() {
+            let seed;
+            do {
+                const randomPart = window.crypto?.randomUUID?.()
+                    || (window.crypto?.getRandomValues
+                        ? Array.from(window.crypto.getRandomValues(new Uint32Array(2)), value => value.toString(36)).join('')
+                        : `${Date.now()}_${Math.random().toString(36).slice(2)}`);
+                seed = `LeEng_${randomPart}`;
+            } while (seed === currentAvatarSeed || avatarPickerPages.flat().includes(seed));
+            return seed;
+        }
+        function changeAvatar(direction) {
+            currentAvatarSeed = generateUniqueAvatarSeed();
+            renderAvatar(currentAvatarSeed, 'avatar-preview-container');
+        }
+
+        let avatarPickerSeeds = [];
+        let avatarPickerSelection = '';
+        let avatarPickerPages = [];
+        let avatarPickerPageIndex = 0;
+        function createAvatarPage(initialSeed = '') {
+            const seeds = initialSeed ? [initialSeed] : [];
+            const existing = new Set(avatarPickerPages.flat());
+            if (initialSeed) existing.add(initialSeed);
+            while (seeds.length < 10) {
+                const seed = `LeEng_${Math.floor(Math.random() * 1e12)}`;
+                if (!existing.has(seed)) {
+                    seeds.push(seed);
+                    existing.add(seed);
+                }
+            }
+            return seeds;
+        }
+        function renderAvatarOptions() {
+            const grid = document.getElementById('avatar-options');
+            if (!grid) return;
+            const visibleCount = window.matchMedia('(max-width: 767px)').matches ? 9 : 10;
+            const visibleSeeds = avatarPickerSeeds.slice(0, visibleCount);
+            if (!visibleSeeds.includes(avatarPickerSelection)) visibleSeeds[visibleSeeds.length - 1] = avatarPickerSelection;
+            grid.innerHTML = visibleSeeds.map(seed => `
+                <button type="button" aria-label="Обрати аватар ${seed}" aria-pressed="${avatarPickerSelection === seed}" onclick="selectAvatar('${seed}')" class="avatar-option aspect-square rounded-full ${avatarPickerSelection === seed ? 'is-selected' : ''} p-1">
+                    ${window.jdenticon ? window.jdenticon.toSvg(seed, 72) : '<span class="text-2xl">👤</span>'}
+                </button>`).join('');
+        }
+        function openAvatarPicker() {
+            avatarPickerSelection = currentAvatarSeed;
+            avatarPickerPages = [createAvatarPage(currentAvatarSeed)];
+            avatarPickerPageIndex = 0;
+            avatarPickerSeeds = avatarPickerPages[avatarPickerPageIndex];
+            renderAvatarOptions();
+            const modal = document.getElementById('avatar-picker-modal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        function cycleAvatars(direction) {
+            if (direction > 0) {
+                if (avatarPickerPageIndex === avatarPickerPages.length - 1) avatarPickerPages.push(createAvatarPage());
+                avatarPickerPageIndex++;
+            } else if (avatarPickerPageIndex > 0) {
+                avatarPickerPageIndex--;
+            }
+            avatarPickerSeeds = avatarPickerPages[avatarPickerPageIndex];
+            avatarPickerSelection = avatarPickerSeeds[0];
+            renderAvatarOptions();
+        }
+        function selectAvatar(seed) {
+            if (!avatarPickerSeeds.includes(seed)) return;
+            avatarPickerSelection = seed;
+            renderAvatarOptions();
+        }
+        function closeAvatarPicker() {
+            const modal = document.getElementById('avatar-picker-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+        function saveSelectedAvatar() {
+            if (!avatarPickerSelection) return;
+            currentAvatarSeed = avatarPickerSelection;
+            renderAvatar(currentAvatarSeed, 'avatar-preview-container');
+            closeAvatarPicker();
+        }
+        window.openAvatarPicker = openAvatarPicker;
+        window.cycleAvatars = cycleAvatars;
+        window.selectAvatar = selectAvatar;
+        window.closeAvatarPicker = closeAvatarPicker;
+        window.saveSelectedAvatar = saveSelectedAvatar;
+        document.addEventListener('DOMContentLoaded', () => {
+            renderAvatar(currentAvatarSeed, 'avatar-preview-container');
+        });
+
+        let viewHistory = ['main'];
+
+        function switchView(viewId, trackHistory = true) {
+            const target = document.getElementById('view-' + viewId);
+            if (!target) return;
+            const activeView = document.querySelector('.app-view:not(.hidden)');
+            const activeViewId = activeView?.id.replace(/^view-/, '');
+            if (trackHistory && activeViewId && activeViewId !== viewId) viewHistory.push(viewId);
+            document.querySelectorAll('.app-view').forEach(view => { view.classList.add('hidden'); view.classList.remove('block'); });
+            target.classList.remove('hidden');
+            target.classList.add('block');
+            requestAnimationFrame(() => {
+                syncMobileNavigationLayout();
+                checkNavVisibility();
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function returnToPreviousView(fallback = 'main') {
+            if (viewHistory.length > 1) {
+                viewHistory.pop();
+                switchView(viewHistory[viewHistory.length - 1], false);
+                return;
+            }
+            switchView(fallback, false);
+        }
+
+        window.returnToPreviousView = returnToPreviousView;
+
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const spans = btn?.querySelectorAll('span') || [];
+
+        function syncMobileNavigationLayout() {
+            const mobile = window.matchMedia('(max-width: 767px)').matches;
+            const navigationButton = document.getElementById('mobile-menu-btn');
+            const navigationMenu = document.getElementById('mobile-menu');
+            const mobileNavigationLinks = navigationMenu?.querySelector('nav');
+            const navigationHeader = navigationButton?.closest('header');
+            const navigationVisible = mobile && navigationButton && navigationHeader
+                && navigationMenu && mobileNavigationLinks
+                && getComputedStyle(navigationButton).display !== 'none'
+                && getComputedStyle(navigationButton).visibility !== 'hidden'
+                && Number(getComputedStyle(navigationButton).opacity) > 0
+                && navigationButton.getBoundingClientRect().width > 0
+                && getComputedStyle(navigationHeader).display !== 'none'
+                && getComputedStyle(navigationHeader).visibility !== 'hidden'
+                && getComputedStyle(navigationMenu).display !== 'none'
+                && getComputedStyle(mobileNavigationLinks).display !== 'none'
+                && getComputedStyle(mobileNavigationLinks).visibility !== 'hidden'
+                && mobileNavigationLinks.getBoundingClientRect().width > 0;
+            document.body.classList.toggle('has-mobile-navigation', Boolean(navigationVisible));
+        }
+
+        syncMobileNavigationLayout();
+        window.addEventListener('resize', syncMobileNavigationLayout);
+        window.addEventListener('load', syncMobileNavigationLayout, { once: true });
+        const navigationHeader = btn?.closest('header');
+        const navigationMenu = document.getElementById('mobile-menu');
+        const navigationObserver = new MutationObserver(syncMobileNavigationLayout);
+        navigationObserver.observe(document.body, { childList: true });
+        if (navigationHeader) navigationObserver.observe(navigationHeader, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style'] });
+        if (navigationMenu) navigationObserver.observe(navigationMenu, { childList: true, subtree: true, attributes: true, attributeFilter: ['class', 'style', 'hidden'] });
+
+        function closeMobileMenu() {
+            menu?.classList.add('translate-x-full'); document.body.classList.remove('no-scroll');
+            if (spans[0]) spans[0].style.transform = 'translateY(0) rotate(0)';
+            if (spans[1]) spans[1].style.opacity = '1';
+            if (spans[2]) spans[2].style.transform = 'translateY(0) rotate(0)';
+        }
+        btn?.addEventListener('click', () => {
+            if (!menu) return;
+            if (!menu.classList.contains('translate-x-full')) closeMobileMenu();
+            else {
+                menu.classList.remove('translate-x-full'); document.body.classList.add('no-scroll');
+                spans[0].style.transform = 'translateY(8px) rotate(45deg)'; spans[1].style.opacity = '0'; spans[2].style.transform = 'translateY(-8px) rotate(-45deg)';
+            }
+        });
+
+        function openAuth(mode) { switchView('auth'); switchAuthMode(mode); }
+
+        function showVerificationNotice(email) {
+            switchView('auth');
+            document.querySelectorAll('.auth-form-view').forEach(view => {
+                view.classList.add('hidden');
+                view.classList.remove('block');
+            });
+            document.getElementById('verification-email').textContent = email || 'вашу пошту';
+            document.getElementById('auth-confirm-view').classList.remove('hidden');
+            sessionStorage.setItem('pendingEmailVerification', 'true');
+        }
+        window.showVerificationNotice = showVerificationNotice;
+
+        async function resendVerificationEmail() {
+            const user = window.LeEngAuth.currentUser;
+            if (!user) return showToast('Увійдіть, будь ласка, спочатку у створений акаунт.', 'error');
+            try {
+                await window.firebaseAPI.sendEmailVerification(user);
+                showToast('Лист підтвердження надіслано повторно.', 'success');
+            } catch (error) {
+                console.error('Не вдалося надіслати лист підтвердження:', error);
+                showToast('Не вдалося надіслати лист. Спробуйте, будь ласка, пізніше.', 'error');
+            }
+        }
+
+        async function checkEmailVerification() {
+            const user = window.LeEngAuth.currentUser;
+            if (!user) return showToast('Увійдіть, будь ласка, щоб перевірити підтвердження.', 'error');
+            try {
+                await user.reload();
+                if (window.LeEngAuth.currentUser?.emailVerified) {
+                    sessionStorage.removeItem('pendingEmailVerification');
+                    window.location.replace('app.html');
+                } else showToast('Підтвердження ще не знайдено. Перевірте, будь ласка, лист або папку «Спам».', 'info');
+            } catch (error) {
+                console.error('Не вдалося перевірити підтвердження пошти:', error);
+                showToast('Не вдалося перевірити статус. Спробуйте, будь ласка, ще раз.', 'error');
+            }
+        }
+
+        async function returnToAuthLogin() {
+            try {
+                if (window.LeEngAuth.currentUser) await window.firebaseAPI.signOut(window.LeEngAuth);
+                sessionStorage.removeItem('pendingEmailVerification');
+                document.getElementById('auth-confirm-view').classList.add('hidden');
+                switchView('auth');
+                switchAuthMode('login');
+            } catch (error) {
+                console.error('Не вдалося повернутися до входу:', error);
+                showToast('Не вдалося завершити вихід з акаунта.', 'error');
+            }
+        }
+        window.resendVerificationEmail = resendVerificationEmail;
+        window.checkEmailVerification = checkEmailVerification;
+        window.returnToAuthLogin = returnToAuthLogin;
+
+        let legalReturnView = 'main';
+
+        function openLegalPage(viewId) {
+            legalReturnView = document.querySelector('.app-view:not(.hidden)')?.id.replace(/^view-/, '') || 'main';
+            switchView(viewId);
+        }
+
+        function returnFromLegalPage() {
+            const currentViewId = document.querySelector('.app-view:not(.hidden)')?.id.replace(/^view-/, '');
+            if (viewHistory.length > 1 && viewHistory[viewHistory.length - 1] === currentViewId) viewHistory.pop();
+            switchView(legalReturnView, false);
+        }
+
+        function handleAuthBack() {
+            const regStep2 = document.getElementById('reg-step-2');
+            const regStep3 = document.getElementById('reg-step-3');
+            const authForgot = document.getElementById('auth-view-forgot');
+            
+            if (regStep3 && !regStep3.classList.contains('hidden')) {
+                nextRegStep(2);
+                return;
+            }
+            if (regStep2 && !regStep2.classList.contains('hidden')) {
+                nextRegStep(1);
+                return;
+            }
+            if (authForgot && !authForgot.classList.contains('hidden')) {
+                switchAuthMode('login');
+                return;
+            }
+            returnToPreviousView();
+        }
+        window.handleAuthBack = handleAuthBack;
+
+        const authIllustrationFiles = [
+            'Registration.svg', 'LogIn.svg', 'Gmail.svg', 'Password.svg',
+            'PasswordResset.svg', 'RegistrationMobile.svg',
+            'MobileSignIn.svg', 'RessetPasswordMobileBanner.svg', 'EmailMobileBanner.svg', 'PasswordMobile.svg',
+            'Mobile/LogInMobile.svg', 'Mobile/EmailMobile.svg', 'Mobile/NewPasswordMobile.svg', 'Mobile/WhatIsYourNameMobile.svg'
+        ];
+        const authIllustrationPreloads = new Map();
+        let illustrationUpdateSequence = 0;
+
+        function preloadAuthIllustration(filename) {
+            if (!authIllustrationPreloads.has(filename)) {
+                const image = new Image();
+                let resolveLoad;
+                let rejectLoad;
+                const preload = new Promise((resolve, reject) => {
+                    resolveLoad = resolve;
+                    rejectLoad = reject;
+                });
+                authIllustrationPreloads.set(filename, preload);
+                image.addEventListener('load', () => resolveLoad(image), { once: true });
+                image.addEventListener('error', () => rejectLoad(new Error(`Не вдалося завантажити images/${filename}`)), { once: true });
+                image.src = `images/${filename}`;
+                if (image.complete) {
+                    if (image.naturalWidth > 0) resolveLoad(image);
+                    else rejectLoad(new Error(`Не вдалося завантажити images/${filename}`));
+                }
+            }
+            return authIllustrationPreloads.get(filename);
+        }
+
+        authIllustrationFiles.forEach(filename => {
+            preloadAuthIllustration(filename).catch(error => console.error('Помилка попереднього завантаження ілюстрації:', error));
+        });
+
+        async function updateIllustration(desktopFloat, mobileImg) {
+            const updateSequence = ++illustrationUpdateSequence;
+            const nextFiles = [desktopFloat, mobileImg].filter(Boolean);
+            try {
+                await Promise.all(nextFiles.map(preloadAuthIllustration));
+            } catch (error) {
+                console.error('Не вдалося підготувати ілюстрації авторизації:', error);
+                return;
+            }
+            if (updateSequence !== illustrationUpdateSequence) return;
+
+            const illPcFloat = document.getElementById('auth-illustration');
+            const illMob = document.getElementById('auth-illustration-mobile');
+
+            const swapIllustration = (element, filename) => {
+                if (!element || !filename) return;
+                element.style.opacity = '0';
+                setTimeout(() => {
+                    if (updateSequence !== illustrationUpdateSequence) return;
+                    element.src = `images/${filename}`;
+                    requestAnimationFrame(() => {
+                        if (updateSequence === illustrationUpdateSequence) element.style.opacity = '1';
+                    });
+                }, 80);
+            };
+
+            swapIllustration(illMob, mobileImg);
+            swapIllustration(illPcFloat, desktopFloat);
+        }
+
+        function nextRegStep(stepNum) {
+            if (stepNum === 2) {
+                const name = document.getElementById('reg-name').value;
+                if (!name.trim()) return showToast("Будь ласка, введіть ім'я", "error");
+                updateIllustration('Gmail.svg', 'Mobile/EmailMobile.svg');
+                document.getElementById('reg-progress').style.width = '66%';
+            } else if (stepNum === 3) {
+                const email = document.getElementById('reg-email').value;
+                if (!email.trim() || !email.includes('@')) return showToast("Введіть, будь ласка, коректну пошту", "error");
+                updateIllustration('Password.svg', 'Mobile/NewPasswordMobile.svg');
+                document.getElementById('reg-progress').style.width = '100%';
+            } else if (stepNum === 1) {
+                updateIllustration('Registration.svg', 'Mobile/WhatIsYourNameMobile.svg');
+                document.getElementById('reg-progress').style.width = '33%';
+            }
+            document.getElementById('reg-step-1').classList.add('hidden');
+            document.getElementById('reg-step-2').classList.add('hidden');
+            document.getElementById('reg-step-3').classList.add('hidden');
+            document.getElementById('reg-step-' + stepNum).classList.remove('hidden');
+        }
+
+        function switchAuthMode(mode) {
+            document.getElementById('auth-confirm-view').classList.add('hidden');
+            document.querySelectorAll('.auth-form-view').forEach(el => { el.classList.add('hidden'); el.classList.remove('block'); });
+            const target = document.getElementById('auth-view-' + mode);
+            if(target) { target.classList.remove('hidden'); target.classList.add('block'); }
+
+            if (mode === 'register') {
+                currentAvatarSeed = generateUniqueAvatarSeed();
+                renderAvatar(currentAvatarSeed, 'avatar-preview-container');
+                document.getElementById('reg-step-1').classList.remove('hidden'); 
+                document.getElementById('reg-step-2').classList.add('hidden'); 
+                document.getElementById('reg-step-3').classList.add('hidden');
+                document.getElementById('reg-progress').style.width = '33%';
+                updateIllustration('Registration.svg', 'Mobile/WhatIsYourNameMobile.svg');
+            } else if (mode === 'login') {
+                updateIllustration('LogIn.svg', 'Mobile/LogInMobile.svg');
+            } else if (mode === 'forgot') {
+                updateIllustration('Password.svg', 'Mobile/NewPasswordMobile.svg');
+            }
+        }
+
+        function showToast(msg, type = "info") {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.className = `fixed top-20 left-1/2 transform -translate-x-1/2 z-[9999] px-6 py-3 rounded-2xl font-bold shadow-lg transition-all duration-300 pointer-events-none ${type === 'error' ? 'bg-red-500' : 'bg-green-500'} text-white`;
+            setTimeout(() => toast.classList.remove('opacity-0', 'translate-y-[-20px]'), 10);
+            setTimeout(() => toast.classList.add('opacity-0', 'translate-y-[-20px]'), 3000);
+        }
+
+        async function handleRegister(e) {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit-reg');
+            btn.innerHTML = '<div class="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin mx-auto"></div>';
+            
+            const name = document.getElementById('reg-name').value;
+            const email = document.getElementById('reg-email').value;
+            const pass = document.getElementById('reg-password').value;
+            const passConfirm = document.getElementById('reg-password-confirm').value;
+
+            if(pass !== passConfirm) { btn.innerHTML = 'Створити акаунт'; return showToast("Паролі не співпадають", "error"); }
+
+            try {
+                sessionStorage.setItem('pendingEmailVerification', 'true');
+                const userCredential = await window.firebaseAPI.createUserWithEmailAndPassword(window.LeEngAuth, email, pass);
+                const user = userCredential.user;
+                await window.firebaseAPI.updateProfile(user, { displayName: name });
+                await window.firebaseAPI.setDoc(window.firebaseAPI.doc(window.LeEngDB, "users", user.uid), {
+                    name: name, email: email, role: "user", coins: 0, streak: 0, streakFrozen: false,
+                    codingCourseProgress: {},
+                    avatarSeed: currentAvatarSeed, createdAt: new Date().toISOString()
+                });
+                showVerificationNotice(email);
+                btn.innerHTML = 'Створити акаунт';
+                try {
+                    await window.firebaseAPI.sendEmailVerification(user);
+                    showToast('Акаунт створено. Перевірте, будь ласка, пошту для підтвердження.', 'success');
+                } catch (verificationError) {
+                    console.error('Акаунт створено, але лист підтвердження не надіслано:', verificationError);
+                    showToast('Акаунт створено, але лист не надіслано. Скористайтеся, будь ласка, кнопкою повторного надсилання.', 'error');
+                }
+            } catch (error) {
+                btn.innerHTML = 'Створити акаунт';
+                if (!window.LeEngAuth.currentUser) sessionStorage.removeItem('pendingEmailVerification');
+                console.error('Помилка реєстрації:', error);
+                showToast("Не вдалося створити акаунт. Перевірте, будь ласка, дані або вкажіть іншу пошту.", "error");
+            }
+        }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const pass = document.getElementById('login-password').value;
+            try { await window.firebaseAPI.signInWithEmailAndPassword(window.LeEngAuth, email, pass); } 
+            catch (error) { showToast("Помилка входу: Невірні дані", "error"); }
+        }
+
+        async function handleResetPassword(e) {
+            e.preventDefault();
+            const email = document.getElementById('reset-email').value;
+            try {
+                await window.firebaseAPI.sendPasswordResetEmail(window.LeEngAuth, email);
+                showToast("Лист для скидання надіслано!", "success");
+                switchAuthMode('login');
+            } catch (error) { showToast("Помилка відновлення", "error"); }
+        }
+
+        function checkNavVisibility() {
+            const header = document.querySelector('header');
+            if (!header || header.offsetHeight === 0 || getComputedStyle(header).display === 'none' || getComputedStyle(header).visibility === 'hidden') {
+                document.body.classList.remove('pt-[60px]');
+                document.body.style.paddingTop = '0px';
+                const hero = document.getElementById('mobile-landing-hero');
+                if (hero) {
+                    const mobileLanding = window.matchMedia('(max-width: 767px)').matches
+                        && !document.getElementById('view-main')?.classList.contains('hidden');
+                    hero.style.marginTop = mobileLanding ? '16px' : '0px';
+                }
+            } else {
+                document.body.style.paddingTop = ''; 
+            }
+        }
+        window.addEventListener('resize', checkNavVisibility);
+        document.addEventListener('DOMContentLoaded', checkNavVisibility);
+        setTimeout(checkNavVisibility, 500);
+
+        function handleHashRouting() {
+            const hash = window.location.hash.toLowerCase();
+            if (hash === '#login') {
+                openAuth('login');
+            } else if (hash === '#register') {
+                openAuth('register');
+            } else if (hash === '#forgot') {
+                openAuth('forgot');
+            }
+        }
+        window.addEventListener('hashchange', handleHashRouting);
+        window.addEventListener('DOMContentLoaded', handleHashRouting);
+    </script>
+</body>
+</html>
