@@ -1,0 +1,24 @@
+<svg width="158" height="37" viewBox="0 0 158 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_i_110_274)">
+<rect width="158" height="37" rx="8" fill="white"/>
+</g>
+<path d="M131.184 15.7118H133.873V18.3796H131.184V26.3832H125.805V13.0439H131.184V15.7118ZM141.941 13.0439V15.7118H133.873V13.0439H141.941Z" fill="#0510F5"/>
+<path d="M101.601 26.3832V7.70825H117.737V10.3761H120.426V18.3796H117.737V21.0475H106.979V26.3832H101.601ZM106.979 18.3796H115.047V10.3761H106.979V18.3796Z" fill="#0510F5"/>
+<path d="M82.7751 29.051V26.3832H93.5325V23.7153H82.7751V21.0475H80.0857V13.0439H85.4644V21.0475H93.5325V13.0439H98.9112V26.3832H96.2219V29.051H82.7751Z" fill="#0510F5"/>
+<path d="M58.5708 26.3832V23.7153H72.0176V21.0475H61.2602V18.3796H58.5708V15.7118H61.2602V13.0439H74.707V15.7118H63.9495V18.3796H74.707V21.0475H77.3963V23.7153H74.707V26.3832H58.5708Z" fill="#0510F5"/>
+<path d="M39.7452 26.3832V23.7153H37.0558V21.0475H39.7452V18.3796H50.5027V15.7118H39.7452V13.0439H53.192V15.7118H55.8814V26.3832H39.7452ZM42.4346 23.7153H50.5027V21.0475H42.4346V23.7153Z" fill="#0510F5"/>
+<path d="M15.541 26.3834V7.7085H34.3665V10.3763H20.9197V15.712H31.6772V18.3799H20.9197V23.7156H34.3665V26.3834H15.541Z" fill="#0510F5"/>
+<defs>
+<filter id="filter0_i_110_274" x="-1" y="-1" width="159" height="38" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feMorphology radius="3" operator="erode" in="SourceAlpha" result="effect1_innerShadow_110_274"/>
+<feOffset dx="-1" dy="-1"/>
+<feGaussianBlur stdDeviation="1"/>
+<feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_110_274"/>
+</filter>
+</defs>
+</svg>
